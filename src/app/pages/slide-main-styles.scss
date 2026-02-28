@@ -146,12 +146,8 @@
         box-sizing: border-box;
         padding: 10px;
         background-color: #fff;
-
-        
-
-
+      }
     }
-
   }
 
   .table-wrapper {
@@ -258,4 +254,140 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  :host ::ng-deep {
+    .chart-wrapper {
+      .p-chart,
+      canvas {
+        height: min(52vh, 420px) !important;
+      }
+
+      canvas {
+        width: 100% !important;
+      }
+    }
+  }
+
+  .slide-content {
+    height: auto;
+    justify-content: flex-start;
+
+    .split-slide {
+      gap: 1.5rem;
+      padding: 1.25rem;
+      align-items: stretch;
+
+      .text-column,
+      .image-column,
+      .grid-wrapper,
+      .result-column {
+        width: 100%;
+      }
+
+      .text-column {
+        h1 {
+          font-size: 2rem;
+        }
+
+        p,
+        li {
+          font-size: 1rem;
+          max-width: 100%;
+        }
+
+        .image-wrapper img {
+          max-width: 100%;
+          max-height: none;
+        }
+      }
+
+      .image-column img {
+        max-height: none;
+      }
+
+      .result-column {
+        gap: 1.5rem;
+
+        .chart-wrapper {
+          width: 100%;
+          min-height: 360px;
+          padding: 0.85rem;
+        }
+      }
+    }
+
+    .table-wrapper,
+    .multi-result-wrapper {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  :host ::ng-deep {
+    .chart-wrapper {
+      .p-chart,
+      canvas {
+        height: min(50vh, 380px) !important;
+      }
+    }
+
+    .table-wrapper .p-datatable .p-datatable-thead > tr > th,
+    .table-wrapper .p-datatable .p-datatable-tbody > tr > td,
+    .table-wrapper .p-datatable .p-datatable-tfoot > tr > td {
+      padding: 0.45rem 0.55rem;
+      font-size: 0.78rem;
+      line-height: 1.2;
+    }
+
+    .table-wrapper .p-datatable .p-datatable-thead > tr > th,
+    .table-wrapper .p-datatable .p-datatable-tbody > tr > td {
+      white-space: nowrap;
+    }
+
+    .table-wrapper .p-datatable .p-datatable-tfoot > tr > td > div {
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .table-wrapper .p-datatable .p-datatable-tfoot p {
+      margin: 0 !important;
+      font-size: 0.78rem;
+    }
+  }
+
+  .slide-content {
+    .split-slide {
+      flex-direction: column;
+      padding: 1rem;
+
+      .text-column {
+        padding: 0;
+
+        h1 {
+          font-size: 1.75rem;
+        }
+
+        h2 {
+          font-size: 1rem;
+        }
+      }
+
+      .result-column {
+        .chart-wrapper {
+          min-height: 340px;
+        }
+      }
+    }
+  }
+
+  .next-btn-div {
+    margin-top: 1rem;
+
+    .next-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
 }

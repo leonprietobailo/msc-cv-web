@@ -2,8 +2,9 @@
 
 .slideshow-wrapper {
   position: relative;
-  width: 100vw;
-  height: calc(100vh - 93px);
+  width: 100%;
+  height: calc(100dvh - 93px);
+  min-height: calc(100dvh - 93px);
   overflow: hidden;
   display: flex;
 
@@ -75,6 +76,47 @@
       &.active {
         background-color: c.$cv-secondary;
       }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .slideshow-wrapper {
+    height: auto;
+    min-height: calc(100dvh - 85px);
+    overflow: visible;
+
+    .slide-track {
+      height: auto;
+      width: 100%;
+    }
+
+    .slide {
+      position: static;
+      height: auto;
+      opacity: 0;
+      pointer-events: none;
+      display: none;
+
+      &.active {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    .controls-vertical {
+      position: fixed;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      top: auto;
+      transform: none;
+      flex-direction: row;
+      padding: 0.45rem;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(6px);
+      gap: 0.5rem;
     }
   }
 }

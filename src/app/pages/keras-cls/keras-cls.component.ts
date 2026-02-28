@@ -1,9 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  AfterViewInit
-} from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { UIChart as PrimeNGChart, ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { SlideshowSectionComponent } from '../../components/slideshow-section/slideshow-section.component';
@@ -18,17 +13,27 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 
-
 @Component({
   selector: 'app-keras-cls',
   standalone: true,
-  imports: [SlideshowSectionComponent, ChartModule, TableModule, HttpClientModule, ImageCompareModule, SelectButtonModule, FormsModule, ButtonModule],
+  imports: [
+    SlideshowSectionComponent,
+    ChartModule,
+    TableModule,
+    HttpClientModule,
+    ImageCompareModule,
+    SelectButtonModule,
+    FormsModule,
+    ButtonModule,
+  ],
   templateUrl: './keras-cls.component.html',
-  styleUrls: ['../slide-main-styles.scss', './keras-cls.component.scss']
+  styleUrls: ['../slide-main-styles.scss', './keras-cls.component.scss'],
 })
 export class KerasClsComponent {
-
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   @ViewChild('clsChart') clsChart!: PrimeNGChart;
   @ViewChild('clsCropChart') clsCropChart!: PrimeNGChart;
@@ -44,7 +49,10 @@ export class KerasClsComponent {
   clsChartOptions: any;
   stageChartOptions: any;
 
-  stageOptions: any[] = [{ label: 'Stage 8-9', value: 'stage89' }, { label: 'Stage 6-7', value: 'stage67' }];
+  stageOptions: any[] = [
+    { label: 'Stage 8-9', value: 'stage89' },
+    { label: 'Stage 6-7', value: 'stage67' },
+  ];
 
   selectedStage: string = this.stageOptions[0].value;
 
@@ -52,44 +60,74 @@ export class KerasClsComponent {
   stage67Accuracy = 98.6;
 
   stage89Time = 45.65;
-  stage67Time = 46.13; 
+  stage67Time = 46.13;
 
   clsTableData = [
-    { class: 'Defective', precision: 1.0000, recall: 1.0000, f1: 1.0000, support: 453 },
-    { class: 'Ok', precision: 1.0000, recall: 1.0000, f1: 1.0000, support: 262 }
+    { class: 'Defective', precision: 1.0, recall: 1.0, f1: 1.0, support: 453 },
+    { class: 'Ok', precision: 1.0, recall: 1.0, f1: 1.0, support: 262 },
   ];
 
   clsCropTableData = [
-    { class: 'Defective', precision: 1.0000, recall: 1.0000, f1: 1.0000, support: 453 },
-    { class: 'Ok', precision: 1.0000, recall: 1.0000, f1: 1.0000, support: 262 }
+    { class: 'Defective', precision: 1.0, recall: 1.0, f1: 1.0, support: 453 },
+    { class: 'Ok', precision: 1.0, recall: 1.0, f1: 1.0, support: 262 },
   ];
 
   clsBaseTableData = [
-    { class: 'Defective', precision: 0.9729, recall: 0.9514, f1: 0.9621, support: 453 },
-    { class: 'Ok', precision: 0.9191, recall: 0.9542, f1: 0.9363, support: 262 }
+    {
+      class: 'Defective',
+      precision: 0.9729,
+      recall: 0.9514,
+      f1: 0.9621,
+      support: 453,
+    },
+    {
+      class: 'Ok',
+      precision: 0.9191,
+      recall: 0.9542,
+      f1: 0.9363,
+      support: 262,
+    },
   ];
 
   stage67TableData = [
-    { class: 'Defective', precision: 0.9799, recall: 0.9669, f1: 0.9733, support: 453 },
-    { class: 'Ok', precision: 0.9440, recall: 0.9656, f1: 0.9547, support: 262 }
+    {
+      class: 'Defective',
+      precision: 0.9799,
+      recall: 0.9669,
+      f1: 0.9733,
+      support: 453,
+    },
+    { class: 'Ok', precision: 0.944, recall: 0.9656, f1: 0.9547, support: 262 },
   ];
 
   stage89TableData = [
-    { class: 'Defective', precision: 0.9868, recall: 0.9912, f1: 0.9890, support: 453 },
-    { class: 'Ok', precision: 0.9846, recall: 0.9771, f1: 0.9888, support: 262 }
+    {
+      class: 'Defective',
+      precision: 0.9868,
+      recall: 0.9912,
+      f1: 0.989,
+      support: 453,
+    },
+    {
+      class: 'Ok',
+      precision: 0.9846,
+      recall: 0.9771,
+      f1: 0.9888,
+      support: 262,
+    },
   ];
 
   tlTableData = [
-    { stage: 0, maxd: 6.104e-5, meand: 1.060e-6 },
+    { stage: 0, maxd: 6.104e-5, meand: 1.06e-6 },
     { stage: 1, maxd: 2.136e-4, meand: 5.857e-6 },
     { stage: 2, maxd: 2.337e-5, meand: 5.771e-7 },
     { stage: 3, maxd: 1.907e-5, meand: 4.075e-7 },
     { stage: 4, maxd: 1.526e-5, meand: 2.685e-7 },
-    { stage: 5, maxd: 2.670e-5, meand: 4.729e-7 },
+    { stage: 5, maxd: 2.67e-5, meand: 4.729e-7 },
     { stage: 6, maxd: 1.812e-5, meand: 3.931e-7 },
     { stage: 7, maxd: 6.676e-5, meand: 7.712e-7 },
     { stage: 8, maxd: 3.052e-5, meand: 6.965e-7 },
-    { stage: 9, maxd: 7.153e-6, meand: 2.883e-7 }
+    { stage: 9, maxd: 7.153e-6, meand: 2.883e-7 },
   ];
 
   currentStageAccuracy = this.stage89Accuracy;
@@ -98,12 +136,12 @@ export class KerasClsComponent {
   currentStageTableData = this.stage89TableData;
 
   updateDisplay() {
-    this.resetZoomTfStages()
+    this.resetZoomTfStages();
     if (this.selectedStage === 'stage89') {
       this.currentStageChartData = this.clsTlStage89ChartData;
       this.currentStageTableData = this.stage89TableData;
- this.currentStageAccuracy = this.stage89Accuracy;
-  this.currentStageInferenceTime = this.stage89Time;
+      this.currentStageAccuracy = this.stage89Accuracy;
+      this.currentStageInferenceTime = this.stage89Time;
     } else {
       this.currentStageChartData = this.clsTlStage67ChartData;
       this.currentStageTableData = this.stage67TableData;
@@ -145,9 +183,9 @@ export class KerasClsComponent {
   }
 
   ngOnInit() {
-
     this.clsChartOptions = {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         title: {
           display: true,
@@ -156,11 +194,11 @@ export class KerasClsComponent {
         zoom: {
           zoom: {
             drag: {
-              enabled: true
+              enabled: true,
             },
-            mode: 'x'
-          }
-        }
+            mode: 'x',
+          },
+        },
       },
       scales: {
         x: {
@@ -168,22 +206,23 @@ export class KerasClsComponent {
           position: 'bottom',
           title: {
             display: true,
-            text: 'Epochs'
+            text: 'Epochs',
           },
-          min: 20
+          min: 20,
         },
         y: {
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Loss'
-          }
-        }
-      }
+            text: 'Loss',
+          },
+        },
+      },
     };
 
     this.stageChartOptions = {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         title: {
           display: true,
@@ -192,11 +231,11 @@ export class KerasClsComponent {
         zoom: {
           zoom: {
             drag: {
-              enabled: true
+              enabled: true,
             },
-            mode: 'x'
-          }
-        }
+            mode: 'x',
+          },
+        },
       },
       scales: {
         x: {
@@ -204,52 +243,59 @@ export class KerasClsComponent {
           position: 'bottom',
           title: {
             display: true,
-            text: 'Epochs'
+            text: 'Epochs',
           },
-          min: 1
+          min: 1,
         },
         y: {
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Loss'
-          }
-        }
-      }
+            text: 'Loss',
+          },
+        },
+      },
     };
 
-    this.http.get<ChartData>('assets/data/keras-cls-results.json').subscribe(data => {
-      this.clsChartData = data;
-    });
+    this.http
+      .get<ChartData>('assets/data/keras-cls-results.json')
+      .subscribe((data) => {
+        this.clsChartData = data;
+      });
 
-    this.http.get<ChartData>('assets/data/keras-cls-crop-results.json').subscribe(data => {
-      this.clsCropChartData = data;
-    });
+    this.http
+      .get<ChartData>('assets/data/keras-cls-crop-results.json')
+      .subscribe((data) => {
+        this.clsCropChartData = data;
+      });
 
-    this.http.get<ChartData>('assets/data/keras-cls-tl_base-results.json').subscribe(data => {
-      this.clsTlBaseChartData = data;
-    });
+    this.http
+      .get<ChartData>('assets/data/keras-cls-tl_base-results.json')
+      .subscribe((data) => {
+        this.clsTlBaseChartData = data;
+      });
 
-    this.http.get<ChartData>('assets/data/keras-cls-tl_89-results.json').subscribe(data => {
-      this.clsTlStage89ChartData = data;
-      this.updateDisplay(); // Workaround: wait for data to be fetched, then update displays.
-    });
+    this.http
+      .get<ChartData>('assets/data/keras-cls-tl_89-results.json')
+      .subscribe((data) => {
+        this.clsTlStage89ChartData = data;
+        this.updateDisplay(); // Workaround: wait for data to be fetched, then update displays.
+      });
 
-    this.http.get<ChartData>('assets/data/keras-cls-tl_67-results.json').subscribe(data => {
-      this.clsTlStage67ChartData = data;
-    });
+    this.http
+      .get<ChartData>('assets/data/keras-cls-tl_67-results.json')
+      .subscribe((data) => {
+        this.clsTlStage67ChartData = data;
+      });
 
-
-    this.updateDisplay()
+    this.updateDisplay();
   }
 
   formatScientific(val: number): string {
-    return val.toExponential(2); 
+    return val.toExponential(2);
   }
 
   goNext() {
     this.router.navigate(['gradcam']);
-    }
-
-
+  }
 }

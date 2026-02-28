@@ -1,8 +1,17 @@
 .route-container {
   position: relative;
-  height: calc(100vh - 93px);
-  overflow: hidden;
+  height: calc(100dvh - 93px);
+  min-height: calc(100dvh - 93px);
+  overflow-x: hidden;
+  overflow-y: auto;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .route-container {
+    height: auto;
+    min-height: calc(100dvh - 85px);
+  }
 }
 
 
